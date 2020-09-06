@@ -16,5 +16,5 @@ def get_data_from_city(city):
 def get_data_from_coordinates(lat, lon):
     r = requests.get(
         '{}?lat={}&lon={}&appid={}&lang={}&units={}'.format(
-            API_URI, lat, lon, API_KEY, language, units))
+            API_URI, lat, lon, API_KEY, LANGUAGE, UNITS))
     return r.json()
