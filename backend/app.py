@@ -20,44 +20,42 @@ def pagina_inicial():
     lat = request.args.get('lat', None)
     lon = request.args.get('lon', None)
 
-    if cidade is not None:
-        if (cache.get("climate_data") and
-            comparar_case_insensitive_unidecode(
-                cache.get("climate_data")["name"], cidade
-            )
-        ):
-            data = cache.get("climate_data")
-        else:
-            result = get_data_from_city(cidade)
-            if result['cod'] == 200:
+    try:
+        if cidade is not None:
+            if (cache.get("climate_data") and
+                comparar_case_insensitive_unidecode(
+                    cache.get("climate_data")["name"], cidade
+                )
+            ):
+                data = cache.get("climate_data")
+            else:
+                result = get_data_from_city(cidade)
+
+                if result['cod'] != 200:
+                    raise Exception("Cidade inválida")
+
                 data = result
                 cache.set("climate_data", data)
-            else:
-                data = cache.get("climate_data") or {
-                "warning": "No data was returned"
-            }
-    else:
-        if lat is not None and lon is not None:
+        else:
             if (lat == cache.get("climate_data")['coord']['lat'] and
                 lon == cache.get("climate_data")['coord']['lon']
                 ):
                 data = cache.get("climate_data")
             else:
                 result = get_data_from_coordinates(lat, lon)
-                
-                if result['cod'] == 200:
-                    data = result
-                    cache.set("climate_data", data)
-                else:
-                    data = cache.get("climate_data") or {
-                    "warning": "No data was returned"
-                }
-        else:
-            data = cache.get("climate_data") or {
-                "warning": "No data was returned"
-            }
 
-    return data
+                if result['cod'] != 200:
+                    raise Exception("Coordenadas inválidas")
+
+                data = result
+                cache.set("climate_data", data)
+    except:
+        data = cache.get("climate_data") or {
+            "warning": "No data was returned"
+        }
+    finally:
+        return data
+
 
 def comparar_case_insensitive_unidecode(str1, str2):
     return unidecode(str1).lower() == unidecode(str2).lower()
