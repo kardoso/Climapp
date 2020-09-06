@@ -28,8 +28,14 @@ def pagina_inicial():
         ):
             data = cache.get("climate_data")
         else:
-            data = get_data_from_city(cidade)
-            cache.set("climate_data", data)
+            result = get_data_from_city(cidade)
+            if result['cod'] == 200:
+                data = result
+                cache.set("climate_data", data)
+            else:
+                data = cache.get("climate_data") or {
+                "warning": "No data was returned"
+            }
     else:
         if lat is not None and lon is not None:
             if (lat == cache.get("climate_data")['coord']['lat'] and
@@ -37,8 +43,15 @@ def pagina_inicial():
                 ):
                 data = cache.get("climate_data")
             else:
-                data = get_data_from_coordinates(lat, lon)
-                cache.set("climate_data", data)
+                result = get_data_from_coordinates(lat, lon)
+                
+                if result['cod'] == 200:
+                    data = result
+                    cache.set("climate_data", data)
+                else:
+                    data = cache.get("climate_data") or {
+                    "warning": "No data was returned"
+                }
         else:
             data = cache.get("climate_data") or {
                 "warning": "No data was returned"
