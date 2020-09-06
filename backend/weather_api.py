@@ -12,3 +12,9 @@ def get_data_from_city(city):
         '{}?q={}&appid={}&lang={}&units={}'.format(
             API_URI, city, API_KEY, LANGUAGE, UNITS))
     return r.json()
+
+def get_data_from_coordinates(lat, lon):
+    r = requests.get(
+        '{}?lat={}&lon={}&appid={}&lang={}&units={}'.format(
+            API_URI, lat, lon, API_KEY, language, units))
+    return r.json()
