@@ -1,24 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import { apiURI } from "./constants";
+import InfoClima from "./Components/InfoClima";
 
 function App() {
+  const [dadosClima, definirDadosClima] = useState({});
+
+  useEffect(() => {
+    definirDadosComLocalAtual();
+  }, []);
+
+  const definirDadosComLocalAtual = () => {
+    let latitude;
+    let longitude;
+
+    definirDadosClima({});
+
+    navigator.geolocation.getCurrentPosition((pos) => {
+      latitude = pos.coords.latitude;
+      longitude = pos.coords.longitude;
+
+      fetch(`${apiURI}?lat=${latitude}&lon=${longitude}`)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          definirDadosClima(data);
+        });
+    });
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <InfoClima data={dadosClima} />
     </div>
   );
 }
