@@ -1,5 +1,6 @@
 from flask import Flask, request
 from flask_caching import Cache
+from flask_cors import cross_origin
 from unidecode import unidecode
 from weather_api import get_data_from_city, get_data_from_coordinates
 
@@ -15,6 +16,7 @@ cache = Cache(app)
 
 
 @app.route('/')
+@cross_origin()
 def pagina_inicial():
     cidade = request.args.get('cidade', None)
     lat = request.args.get('lat', None)
