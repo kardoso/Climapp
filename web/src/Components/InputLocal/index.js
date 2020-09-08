@@ -18,7 +18,11 @@ function InputLocal({ novosDadosCidade, novosDadosLocalAtual }) {
             value={cidade}
             onChange={(e) => definirCidade(e.target.value)}
           ></input>
-          <button type="submit" onClick={pesquisarDados}>
+          <button
+            disabled={cidade === ""}
+            type="submit"
+            onClick={pesquisarDados}
+          >
             Pesquisar
           </button>
         </form>
