@@ -1,4 +1,5 @@
 import React from "react";
+import "./style.css";
 import { weatherIconUrl } from "../../constants";
 
 function InfoClima({ data }) {
@@ -6,14 +7,18 @@ function InfoClima({ data }) {
     <div className="infoClima" data-testid="info-component">
       {data?.main ? (
         <>
-          <p className="temp" data-testid="temp">{`${data.main?.temp}°C`}</p>
-          <div className="description">
-            <p data-testid="description">{data.weather[0].description}</p>
-            <img
-              data-testid="icon"
-              src={weatherIconUrl(data.weather[0].icon)}
-              alt={data.weather[0].icon}
-            />
+          <div className="weather">
+            <div className="temp">
+              <p data-testid="temp">{`${data.main?.temp}°C`}</p>
+            </div>
+            <div className="description">
+              <p data-testid="description">{data.weather[0].description}</p>
+              <img
+                data-testid="icon"
+                src={weatherIconUrl(data.weather[0].icon)}
+                alt={data.weather[0].icon}
+              />
+            </div>
           </div>
           <p
             className="location"
@@ -21,7 +26,9 @@ function InfoClima({ data }) {
           >{`${data.name}, ${data.sys.country}`}</p>
         </>
       ) : (
-        <p className="loading">Carregando...</p>
+        <div className="loading">
+          <p>Carregando...</p>
+        </div>
       )}
     </div>
   );

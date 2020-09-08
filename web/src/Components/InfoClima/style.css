@@ -1,0 +1,55 @@
+.infoClima {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.infoClima > * {
+  height: 100%;
+}
+
+.weather {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.temp {
+  color: white;
+  font-size: 3rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.description {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1.25rem;
+}
+
+.description > img {
+  height: 50px;
+}
+
+.location {
+  color: white;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.loading {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+@media (max-width: 600px) {
+  .weather {
+    flex-direction: column;
+  }
+}
