@@ -37,9 +37,10 @@ def pagina_inicial():
                 data = result
                 cache.set("climate_data", data)
         else:
-            if (lat == cache.get("climate_data")['coord']['lat'] and
+            if cache.get("climate_data") is not None and (
+                lat == cache.get("climate_data")['coord']['lat'] and
                 lon == cache.get("climate_data")['coord']['lon']
-                ):
+            ):
                 data = cache.get("climate_data")
             else:
                 result = get_data_from_coordinates(lat, lon)
@@ -49,7 +50,7 @@ def pagina_inicial():
 
                 data = result
                 cache.set("climate_data", data)
-    except:
+    except Exception as e:
         data = cache.get("climate_data") or {
             "warning": "No data was returned"
         }
