@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import { apiURI } from "./constants";
 import InfoClima from "./Components/InfoClima";
+import InputLocal from "./Components/InputLocal";
 
 function App() {
   const [dadosClima, definirDadosClima] = useState({});
@@ -45,6 +46,10 @@ function App() {
   return (
     <div className="App">
       <InfoClima data={dadosClima} />
+      <InputLocal
+        novosDadosCidade={definirDadosComCidade}
+        novosDadosLocalAtual={definirDadosComLocalAtual}
+      />
     </div>
   );
 }
