@@ -30,6 +30,18 @@ function App() {
     });
   };
 
+  const definirDadosComCidade = (cidade) => {
+    definirDadosClima({});
+
+    fetch(`${apiURI}?cidade=${cidade}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        definirDadosClima(data);
+      });
+  };
+
   return (
     <div className="App">
       <InfoClima data={dadosClima} />
