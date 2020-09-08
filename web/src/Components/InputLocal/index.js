@@ -3,7 +3,8 @@ import React, { useState } from "react";
 function InputLocal({ novosDadosCidade, novosDadosLocalAtual }) {
   const [cidade, definirCidade] = useState("");
 
-  const pesquisarDados = () => {
+  const pesquisarDados = (e) => {
+    e.preventDefault();
     novosDadosCidade(cidade);
     definirCidade("");
   };
@@ -11,12 +12,16 @@ function InputLocal({ novosDadosCidade, novosDadosLocalAtual }) {
   return (
     <div className="inputLocal" data-testid="input-component">
       <div className="search">
-        <input
-          type="text"
-          value={cidade}
-          onChange={(e) => definirCidade(e.target.value)}
-        ></input>
-        <button onClick={pesquisarDados}>Pesquisar</button>
+        <form onSubmit={pesquisarDados}>
+          <input
+            type="text"
+            value={cidade}
+            onChange={(e) => definirCidade(e.target.value)}
+          ></input>
+          <button type="submit" onClick={pesquisarDados}>
+            Pesquisar
+          </button>
+        </form>
       </div>
       <button className="currentLocal" onClick={novosDadosLocalAtual}>
         Localização atual
