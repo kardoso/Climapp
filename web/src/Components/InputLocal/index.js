@@ -24,6 +24,7 @@ function InputLocal({ novosDadosCidade, novosDadosLocalAtual }) {
             type="text"
             value={cidade}
             onChange={(e) => definirCidade(e.target.value)}
+            placeholder="Cidade. Ex: São Paulo"
           ></input>
           <button
             disabled={cidade === ""}
