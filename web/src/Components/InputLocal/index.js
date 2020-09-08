@@ -1,4 +1,10 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+
+const searchIcon = <FontAwesomeIcon icon={faSearch} />;
+const mapMarkerIcon = <FontAwesomeIcon icon={faMapMarkerAlt} />;
 
 function InputLocal({ novosDadosCidade, novosDadosLocalAtual }) {
   const [cidade, definirCidade] = useState("");
@@ -23,12 +29,12 @@ function InputLocal({ novosDadosCidade, novosDadosLocalAtual }) {
             type="submit"
             onClick={pesquisarDados}
           >
-            Pesquisar
+            {searchIcon}
           </button>
         </form>
       </div>
       <button className="currentLocal" onClick={novosDadosLocalAtual}>
-        Localização atual
+        Localização atual {mapMarkerIcon}
       </button>
     </div>
   );
