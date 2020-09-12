@@ -6,7 +6,7 @@ import InfoClima from "./components/InfoClima";
 import InputCidade from "./components/InputCidade";
 
 export default function App() {
-  const [estado, setEstado] = useState();
+  const [dadosCidade, setDadosCidade] = useState();
 
   useEffect(() => {
     fetch(`${apiURI}?cidade=belem`)
@@ -14,7 +14,7 @@ export default function App() {
         return response.json();
       })
       .then((data) => {
-        setEstado(data);
+        setDadosCidade(data);
       });
   }, []);
 
@@ -35,7 +35,7 @@ export default function App() {
             "https://images.unsplash.com/photo-1583887547017-fbe85bd65ff2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=980&q=80",
         }}
       />
-      <InfoClima data={estado} />
+      <InfoClima data={dadosCidade} />
       <InputCidade
         novosDadosCidade={definirDadosComCidade}
         novosDadosLocalAtual={definirDadosComLocalAtual}
