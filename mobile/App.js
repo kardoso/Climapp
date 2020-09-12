@@ -27,7 +27,7 @@ export default function App() {
         }}
       />
       <InfoClima data={estado} />
-      <StatusBar style="auto" />
+      <StatusBar style="light" translucent={true} animated={true} />
     </View>
   );
 }
