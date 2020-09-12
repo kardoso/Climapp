@@ -1,25 +1,46 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Image, Alert, Keyboard } from "react-native";
+import { StyleSheet, View, Image, Keyboard } from "react-native";
 import { apiURI } from "./constants";
 import InfoClima from "./components/InfoClima";
 import InputCidade from "./components/InputCidade";
 
+import * as Location from "expo-location";
+import * as Permissions from "expo-permissions";
+
 export default function App() {
   const [dadosCidade, setDadosCidade] = useState();
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    fetch(`${apiURI}?cidade=belem`)
+    getLocationAsync();
+  }, []);
+
+  const getLocationAsync = async () => {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== "granted") {
+      setErrorMessage("Localização não foi permitida");
+    } else {
+      setErrorMessage("");
+    }
+
+    let loc = await Location.getCurrentPositionAsync({
+      accuracy: Location.Accuracy.Highest,
+    });
+    const { latitude, longitude } = loc.coords;
+    fetch(`${apiURI}?cidade=${latitude}&lon=${longitude}`)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         setDadosCidade(data);
       });
-  }, []);
+  };
 
   const definirDadosComLocalAtual = () => {
-    Alert.alert("Local atual");
+    setDadosCidade({});
+    Keyboard.dismiss();
+    getLocationAsync();
   };
 
   const definirDadosComCidade = (cidade) => {
