@@ -1,11 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, View } from "react-native";
+import { apiURI } from "./constants";
+import InfoClima from "./components/InfoClima";
 
 export default function App() {
+  const [estado, setEstado] = useState();
+
+  useEffect(() => {
+    fetch(`${apiURI}?cidade=belem`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setEstado(data);
+      });
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <InfoClima data={estado} />
       <StatusBar style="auto" />
     </View>
   );
