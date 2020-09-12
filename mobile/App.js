@@ -1,8 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image, Alert } from "react-native";
 import { apiURI } from "./constants";
 import InfoClima from "./components/InfoClima";
+import InputCidade from "./components/InputCidade";
 
 export default function App() {
   const [estado, setEstado] = useState();
@@ -17,6 +18,14 @@ export default function App() {
       });
   }, []);
 
+  const definirDadosComLocalAtual = () => {
+    Alert.alert("Local atual");
+  };
+
+  const definirDadosComCidade = (cidade) => {
+    Alert.alert(cidade);
+  };
+
   return (
     <View style={styles.container}>
       <Image
@@ -27,6 +36,10 @@ export default function App() {
         }}
       />
       <InfoClima data={estado} />
+      <InputCidade
+        novosDadosCidade={definirDadosComCidade}
+        novosDadosLocalAtual={definirDadosComLocalAtual}
+      />
       <StatusBar style="light" translucent={true} animated={true} />
     </View>
   );
