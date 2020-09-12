@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Image, Alert } from "react-native";
+import { StyleSheet, View, Image, Alert, Keyboard } from "react-native";
 import { apiURI } from "./constants";
 import InfoClima from "./components/InfoClima";
 import InputCidade from "./components/InputCidade";
@@ -23,7 +23,16 @@ export default function App() {
   };
 
   const definirDadosComCidade = (cidade) => {
-    Alert.alert(cidade);
+    setDadosCidade({});
+    Keyboard.dismiss();
+
+    fetch(`${apiURI}?cidade=${cidade}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setDadosCidade(data);
+      });
   };
 
   return (
