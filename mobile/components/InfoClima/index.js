@@ -9,7 +9,7 @@ export default function InfoClima({ data }) {
         <>
           <Text
             style={[styles.text, styles.tempText]}
-          >{`${data?.main?.temp}°C`}</Text>
+          >{`${Math.round(data?.main?.temp)}°C`}</Text>
           <View style={styles.descriptionView}>
             <Text style={[styles.text, styles.descriptionText]}>
               {data?.weather[0].description}
