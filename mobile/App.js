@@ -13,7 +13,7 @@ export default function App() {
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    getLocationAsync();
+    definirDadosComLocalAtual();
   }, []);
 
   const getLocationAsync = async () => {
