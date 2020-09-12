@@ -20,6 +20,7 @@ export default function App() {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
     if (status !== "granted") {
       setErrorMessage("Localização não foi permitida");
+      return;
     } else {
       setErrorMessage("");
     }
@@ -38,12 +39,14 @@ export default function App() {
   };
 
   const definirDadosComLocalAtual = () => {
+    setErrorMessage("");
     setDadosCidade({});
     Keyboard.dismiss();
     getLocationAsync();
   };
 
   const definirDadosComCidade = (cidade) => {
+    setErrorMessage("");
     setDadosCidade({});
     Keyboard.dismiss();
 
@@ -65,7 +68,7 @@ export default function App() {
             "https://images.unsplash.com/photo-1583887547017-fbe85bd65ff2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=980&q=80",
         }}
       />
-      <InfoClima data={dadosCidade} />
+      <InfoClima data={dadosCidade} errorMessage={errorMessage} />
       <InputCidade
         novosDadosCidade={definirDadosComCidade}
         novosDadosLocalAtual={definirDadosComLocalAtual}

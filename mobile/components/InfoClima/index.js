@@ -2,14 +2,14 @@ import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { weatherIconUrl } from "../../constants";
 
-export default function InfoClima({ data }) {
+export default function InfoClima({ data, errorMessage }) {
   return (
     <View style={styles.container}>
       {data?.main ? (
         <>
-          <Text
-            style={[styles.text, styles.tempText]}
-          >{`${Math.round(data?.main?.temp)}°C`}</Text>
+          <Text style={[styles.text, styles.tempText]}>{`${Math.round(
+            data?.main?.temp
+          )}°C`}</Text>
           <View style={styles.descriptionView}>
             <Text style={[styles.text, styles.descriptionText]}>
               {data?.weather[0].description}
@@ -24,7 +24,9 @@ export default function InfoClima({ data }) {
           >{`${data?.name}, ${data?.sys.country}`}</Text>
         </>
       ) : (
-        <Text style={[styles.text, styles.loadingText]}>Carregando</Text>
+        <Text style={[styles.text, styles.loadingText]}>
+          {errorMessage === "" ? "Carregando" : errorMessage}
+        </Text>
       )}
     </View>
   );
