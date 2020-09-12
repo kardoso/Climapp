@@ -9,7 +9,7 @@ function InfoClima({ data }) {
         <>
           <div className="weather">
             <div className="temp">
-              <p data-testid="temp">{`${data.main?.temp}°C`}</p>
+              <p data-testid="temp">{`${Math.round(data.main?.temp)}°C`}</p>
             </div>
             <div className="description">
               <p data-testid="description">{data.weather[0].description}</p>
