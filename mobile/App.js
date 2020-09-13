@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Image, Keyboard } from "react-native";
+import { StyleSheet, View, Image, Keyboard, Text, Linking } from "react-native";
 import { apiURI } from "./constants";
 import InfoClima from "./components/InfoClima";
 import InputCidade from "./components/InputCidade";
@@ -73,6 +73,17 @@ export default function App() {
         novosDadosCidade={definirDadosComCidade}
         novosDadosLocalAtual={definirDadosComLocalAtual}
       />
+      <Text style={styles.creditsText}>
+        Imagem por{" "}
+        <Text
+          style={styles.linkText}
+          onPress={() =>
+            Linking.openURL("https://unsplash.com/photos/YM3gGbx_LhU")
+          }
+        >
+          Josh Sorenson
+        </Text>
+      </Text>
       <StatusBar style="light" translucent={true} animated={true} />
     </View>
   );
@@ -92,5 +103,16 @@ const styles = StyleSheet.create({
     height: "100%",
     position: "absolute",
     opacity: 0.6,
+  },
+
+  creditsText: {
+    position: "absolute",
+    bottom: 0,
+    color: "rgba(255, 255, 255, 0.2)",
+    margin: 16,
+  },
+
+  linkText: {
+    color: "#40788681",
   },
 });
