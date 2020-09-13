@@ -3,9 +3,11 @@ from flask_caching import Cache
 from flask_cors import cross_origin
 from unidecode import unidecode
 from weather_api import get_data_from_city, get_data_from_coordinates
+import os
 
 config = {
-    "DEBUG": True,
+    "SECRET_KEY": os.environ.get('SECRET_KEY') or 'dev_key',
+    "DEBUG": os.environ.get('DEBUG'),
     "CACHE_TYPE": "simple",
     "CACHE_DEFAULT_TIMEOUT": 15 * 60
 }
@@ -65,4 +67,5 @@ def comparar_case_insensitive_unidecode(str1, str2):
 
 
 if __name__ == "__main__":
-    app.run()
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
