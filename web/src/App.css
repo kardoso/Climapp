@@ -32,3 +32,17 @@
 .App > * {
   flex: 1 1 auto;
 }
+
+.credits-text {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: right;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.credits-text a {
+  text-decoration: none;
+  padding-right: 16px;
+  color: #40788681;
+}

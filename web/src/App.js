@@ -51,6 +51,16 @@ function App() {
         novosDadosCidade={definirDadosComCidade}
         novosDadosLocalAtual={definirDadosComLocalAtual}
       />
+      <p class="credits-text">
+        Imagem por{" "}
+        <a
+          href="https://unsplash.com/photos/YM3gGbx_LhU"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Josh Sorenson
+        </a>
+      </p>
     </div>
   );
 }
