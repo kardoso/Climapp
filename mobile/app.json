@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "Climapp",
+    "slug": "Climapp",
+    "version": "1.0.0",
+    "description": "Climapp é um aplicativo que exibe o clima atual, pesquisando a cidade ou utilizando a localização do GPS.",
+    "githubUrl": "https://github.com/kardoso/Climapp",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#39b193"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.kkardoso.Climapp"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "android": {
+      "package": "com.kkardoso.Climapp"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+.inputLocal * {
+  font-size: 1rem;
+}
+
+input,
+button {
+  border: none;
+  outline: none;
+  padding: 8px;
+}
+
+button {
+  background-color: #407886;
+  color: white;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #3a92aa;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  color: rgba(255, 255, 255, 0.486);
+  background-color: #4078868c;
+}
+
+form input {
+  border-radius: 8px 0 0 8px;
+}
+
+form button {
+  border-radius: 0 8px 8px 0;
+}
+
+.currentLocal {
+  margin: 8px;
+  border-radius: 8px;
+}
