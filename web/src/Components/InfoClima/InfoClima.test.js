@@ -48,7 +48,7 @@ test("Should show temperature correctly", () => {
   const { getByTestId } = render(<InfoClima data={mockData} />);
   const { getByText } = within(getByTestId("temp"));
 
-  expect(getByText(`${mockData.main.temp}°C`)).toBeInTheDocument();
+  expect(getByText(`${Math.round(mockData.main.temp)}°C`)).toBeInTheDocument();
 });
 
 test("Should show description correctly", () => {
