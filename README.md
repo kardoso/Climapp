@@ -16,7 +16,7 @@ O backend está disponível em: https://climappbackend.herokuapp.com/
 A rota principal retorna dados recebendo o nome da cidade ou dados de latitude e longitude. Exemplo de como a rota pode ser utilizada:
 
 - `/?cidade=sao paulo`
-- `/?lat=-1.5&long=45`
+- `/?lat=-1.5&lon=45`
 
 <br/>
 
